@@ -51,6 +51,7 @@ run commands.
 | \`lh file\` | File management |
 | \`lh doc\` | Document management (create, parse, organize) |
 | \`lh agent\` | Agent management (create, configure, run) |
+| \`lh goal\` | Long-horizon goals (create, plan, supervise, steer) |
 | \`lh search\` | Search local resources or the web |
 | \`lh gen\` | Content generation (text, image, video, TTS, ASR) |
 | \`lh message\` | Message management and search |
@@ -90,6 +91,9 @@ lh gen image "a sunset over mountains" -m dall-e-3
 
 # Run an agent
 lh agent run -a <agentId> -p "Summarize today's tasks"
+
+# Turn a long-horizon ask into a supervised goal bound to this conversation
+lh goal create "Migrate the data layer" --topic -r "<what counts as done>"
 \`\`\`
 
 # Important Notes
@@ -98,4 +102,8 @@ lh agent run -a <agentId> -p "Summarize today's tasks"
 - Use \`--yes\` to skip confirmation prompts on destructive operations
 - IDs can be found via \`list\` commands
 - For detailed usage of any module, read its reference file using \`readReference\`
+- When the user's ask is long-horizon — multi-step work that should keep making
+  progress across turns — reach for \`lh goal\` (see \`references/goal\`) instead of
+  trying to finish everything inline in this conversation; goals carry a standing
+  requirement and their own task graph, and keep running after your turn ends
 </lobehub_platform_guides>`;
